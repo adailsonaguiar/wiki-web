@@ -12,29 +12,29 @@ const Login = () => {
   const history = useHistory();
   const [erroMessage, setErroMessage] = useState('');
 
-  const authenticate = (email, password) => {
+  const authenticate = async (email, password) => {
     setLoading(true);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        setLoading(false);
-        localStorage.setItem('user', JSON.stringify(user));
-        history.push('/home');
-      })
-      .catch(erro => {
-        console.log(erro);
-        setLoading(false);
-        if (erro.code === 'auth/wrong-password') {
-          setErroMessage('*Senha incorreta!');
-        }
-        if (erro.code === 'auth/invalid-email') {
-          setErroMessage('*E-mail inválido!');
-        }
-        if (erro.code === 'auth/user-not-found') {
-          setErroMessage('*E-mail não cadastrado!');
-        }
-      });
+
+    try {
+      const user = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      setLoading(false);
+      localStorage.setItem('user', JSON.stringify(user));
+      history.push('/home');
+    } catch (erro) {
+      console.log(erro);
+      setLoading(false);
+      if (erro.code === 'auth/wrong-password') {
+        setErroMessage('*Senha incorreta!');
+      }
+      if (erro.code === 'auth/invalid-email') {
+        setErroMessage('*E-mail inválido!');
+      }
+      if (erro.code === 'auth/user-not-found') {
+        setErroMessage('*E-mail não cadastrado!');
+      }
+    }
   };
 
   return (
@@ -63,7 +63,7 @@ const Login = () => {
           <Load />
         ) : (
           <button
-            title='Cadastrar'
+            title='Entrar'
             type='button'
             onClick={() => {
               authenticate(user, password);
