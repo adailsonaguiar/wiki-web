@@ -69,6 +69,3 @@ export const Form = styled.form`
     cursor: pointer;
   }
 `;
-
-export const Load = styled.img`
-`;

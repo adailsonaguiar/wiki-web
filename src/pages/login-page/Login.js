@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Form, Load } from './styles';
+import { Container, Form } from './styles';
 import logo from '../../assets/logo.svg';
-import load from '../../assets/load.svg';
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
+import Load from '../../components/load-component/Load';
 
 const Login = () => {
   const [user, setUser] = useState('');
@@ -30,22 +30,22 @@ const Login = () => {
   return (
     <Container>
       <img src={logo} alt='Logo' />
-      {loading ? (
-        <Load src={load} alt='Loading' />
-      ) : (
-        <Form>
-          <input
-            placeholder='Digite seu e-mail'
-            value={user}
-            onChange={e => setUser(e.target.value)}
-          />
-          <input
-            type='password'
-            placeholder='Informe sua senha'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <i>*Esse usuário já existe.</i>
+      <Form>
+        <input
+          placeholder='Digite seu e-mail'
+          value={user}
+          onChange={e => setUser(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='Informe sua senha'
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <i>*Esse usuário já existe.</i>
+        {!loading ? (
+          <Load />
+        ) : (
           <button
             title='Cadastrar'
             type='button'
@@ -55,9 +55,9 @@ const Login = () => {
           >
             ENTRAR
           </button>
-          <a href='/register'>Você é novo por aqui?</a>
-        </Form>
-      )}
+        )}
+        <a href='/register'>Você é novo por aqui?</a>
+      </Form>
     </Container>
   );
 };
