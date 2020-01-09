@@ -43,7 +43,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)}
         />
         <i>*Esse usuário já existe.</i>
-        {!loading ? (
+        {loading ? (
           <Load />
         ) : (
           <button

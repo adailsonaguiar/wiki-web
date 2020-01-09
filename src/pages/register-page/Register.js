@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Container, Form } from './styles';
 import logo from '../../assets/logo.svg';
 import firebase from 'firebase';
+import Load from '../../components/load-component/Load';
+import { useHistory } from 'react-router-dom';
 
 const Cadastro = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [erroMenssage, setErroMenssage] = useState('');
+  const history = useHistory();
 
   const register = (email, password) => {
     setLoading(true);
@@ -16,6 +19,8 @@ const Cadastro = () => {
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
         setLoading(false);
+        alert('Cadastrado com sucesso! Prossiga para fazer login.');
+        history.push('/');
       })
       .catch(erro => {
         console.log(erro);
@@ -51,15 +56,19 @@ const Cadastro = () => {
           }}
         />
         <i>{erroMenssage}</i>
-        <button
-          title='Cadastrar'
-          type='button'
-          onClick={() => {
-            register(user, password);
-          }}
-        >
-          CADASTRAR
-        </button>
+        {loading ? (
+          <Load />
+        ) : (
+          <button
+            title='Cadastrar'
+            type='button'
+            onClick={() => {
+              register(user, password);
+            }}
+          >
+            CADASTRAR
+          </button>
+        )}
         <a href='/'>Voltar ao login</a>
       </Form>
     </Container>
