@@ -3,15 +3,14 @@ import { Container, Form, Load } from './styles';
 import logo from '../../assets/logo.svg';
 import load from '../../assets/load.svg';
 import firebase from 'firebase';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-  const test = () => {
-    localStorage.setItem(user, 'teste');
-  };
   const authenticate = (email, password) => {
     setLoading(true);
     firebase
@@ -20,6 +19,7 @@ const Login = () => {
       .then(user => {
         setLoading(false);
         localStorage.setItem('user', JSON.stringify(user));
+        history.push('/home');
       })
       .catch(erro => {
         console.log(erro);
