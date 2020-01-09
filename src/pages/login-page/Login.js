@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const [erroMessage, setErroMessage] = useState('');
 
   const authenticate = (email, password) => {
     setLoading(true);
@@ -24,6 +25,15 @@ const Login = () => {
       .catch(erro => {
         console.log(erro);
         setLoading(false);
+        if (erro.code === 'auth/wrong-password') {
+          setErroMessage('*Senha incorreta!');
+        }
+        if (erro.code === 'auth/invalid-email') {
+          setErroMessage('*E-mail inválido!');
+        }
+        if (erro.code === 'auth/user-not-found') {
+          setErroMessage('*E-mail não cadastrado!');
+        }
       });
   };
 
@@ -34,15 +44,21 @@ const Login = () => {
         <input
           placeholder='Digite seu e-mail'
           value={user}
-          onChange={e => setUser(e.target.value)}
+          onChange={e => {
+            setUser(e.target.value);
+            setErroMessage('');
+          }}
         />
         <input
           type='password'
           placeholder='Informe sua senha'
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={e => {
+            setPassword(e.target.value);
+            setErroMessage('');
+          }}
         />
-        <i>*Esse usuário já existe.</i>
+        <i>{erroMessage}</i>
         {loading ? (
           <Load />
         ) : (

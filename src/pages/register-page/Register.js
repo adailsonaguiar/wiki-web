@@ -9,7 +9,7 @@ const Cadastro = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [erroMenssage, setErroMenssage] = useState('');
+  const [erroMessage, setErroMessage] = useState('');
   const history = useHistory();
 
   const register = (email, password) => {
@@ -25,10 +25,10 @@ const Cadastro = () => {
       .catch(erro => {
         console.log(erro);
         if (erro.code === 'auth/email-already-in-use') {
-          setErroMenssage('*Esse email já está cadastrado!');
+          setErroMessage('*Esse email já está cadastrado!');
         }
         if (erro.code === 'auth/invalid-email') {
-          setErroMenssage('*Digite um e-mail válido!');
+          setErroMessage('*Digite um e-mail válido!');
         }
         setLoading(false);
       });
@@ -43,7 +43,7 @@ const Cadastro = () => {
           value={user}
           onChange={e => {
             setUser(e.target.value);
-            setErroMenssage('');
+            setErroMessage('');
           }}
         />
         <input
@@ -52,10 +52,10 @@ const Cadastro = () => {
           value={password}
           onChange={e => {
             setPassword(e.target.value);
-            setErroMenssage('');
+            setErroMessage('');
           }}
         />
-        <i>{erroMenssage}</i>
+        <i>{erroMessage}</i>
         {loading ? (
           <Load />
         ) : (
