@@ -14,26 +14,29 @@ const Login = () => {
 
   const authenticate = async (email, password) => {
     setLoading(true);
-
     try {
       const user = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
       setLoading(false);
       localStorage.setItem('user', JSON.stringify(user));
-      history.push('/home');
+      history.push('/');
     } catch (erro) {
       console.log(erro);
       setLoading(false);
-      if (erro.code === 'auth/wrong-password') {
-        setErroMessage('*Senha incorreta!');
-      }
-      if (erro.code === 'auth/invalid-email') {
-        setErroMessage('*E-mail inválido!');
-      }
-      if (erro.code === 'auth/user-not-found') {
-        setErroMessage('*E-mail não cadastrado!');
-      }
+      verifyErrors(erro);
+    }
+  };
+
+  const verifyErrors = erro => {
+    if (erro.code === 'auth/wrong-password') {
+      setErroMessage('*Senha incorreta!');
+    }
+    if (erro.code === 'auth/invalid-email') {
+      setErroMessage('*E-mail inválido!');
+    }
+    if (erro.code === 'auth/user-not-found') {
+      setErroMessage('*E-mail não cadastrado!');
     }
   };
 

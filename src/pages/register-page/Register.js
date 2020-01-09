@@ -20,7 +20,7 @@ const Cadastro = () => {
       .then(user => {
         setLoading(false);
         alert('Cadastrado com sucesso! Prossiga para fazer login.');
-        history.push('/');
+        history.push('/login');
       })
       .catch(erro => {
         console.log(erro);

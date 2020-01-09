@@ -9,13 +9,25 @@ import {
   Notification
 } from './styles';
 import logo from '../../assets/logo.svg';
+import firebase from 'firebase';
+import { useHistory } from 'react-router-dom';
 
 const Header = () => {
   const [user, setUser] = useState('');
+  const history = useHistory();
   useEffect(() => {
-    const userLocal = JSON.parse(localStorage.getItem('user')).user.email;
-    setUser(userLocal);
+    if (localStorage.getItem('user')) {
+      const userLocal = JSON.parse(localStorage.getItem('user')).user.email;
+      setUser(userLocal);
+    }
   }, []);
+
+  const logOut = async () => {
+    await firebase.auth().signOut();
+    localStorage.clear();
+    history.push('/login');
+  };
+
   return (
     <Container>
       <DivLeft>
@@ -41,7 +53,7 @@ const Header = () => {
       </DivCent>
       <DivRight>
         <User>{user}</User>
-        <a href='/'>Sair</a>
+        <a onClick={() => logOut()}>Sair</a>
       </DivRight>
     </Container>
   );
