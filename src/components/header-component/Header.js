@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Logo,
@@ -11,6 +11,11 @@ import {
 import logo from '../../assets/logo.svg';
 
 const Header = () => {
+  const [user, setUser] = useState('');
+  useEffect(() => {
+    const userLocal = JSON.parse(localStorage.getItem('user')).user.email;
+    setUser(userLocal);
+  }, []);
   return (
     <Container>
       <DivLeft>
@@ -35,7 +40,7 @@ const Header = () => {
         </Notification>
       </DivCent>
       <DivRight>
-        <User>adailsonacj@live.com</User>
+        <User>{user}</User>
         <a href='/'>Sair</a>
       </DivRight>
     </Container>
