@@ -60,7 +60,7 @@ const Home = () => {
     const uid = JSON.parse(localStorage.getItem('user')).uid;
     const res = firebase.database().ref('activities/' + uid);
 
-    await res.once('value').then(snapshot => {
+    await res.on('value').then(snapshot => {
       const aaa = snapshot.val();
       SetActivities(aaa);
       console.log(activities);
@@ -106,9 +106,7 @@ const Home = () => {
         </Row>
       </Form>
       <ContainerActivities>
-        {/*  {activities.map(activity => {
-          console.log(activity);
-        })} */}
+        {/* f */}
         <Activity>activity</Activity>
       </ContainerActivities>
     </Container>
