@@ -14,8 +14,6 @@ import {
 } from './styles';
 import Load from '../../components/load-component/Load';
 
-// import { Container } from './styles';
-
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -118,6 +116,14 @@ export default class Home extends React.Component {
     this.getActivities();
   };
 
+  formatPost = activity => {
+    if (activity[1].descriptionPost.length > 200) {
+      return `${activity[1].descriptionPost.substr(0, 200)}...`;
+    } else {
+      return activity[1].descriptionPost;
+    }
+  };
+
   render() {
     return (
       <Container>
@@ -170,9 +176,8 @@ export default class Home extends React.Component {
                 <TitlePost>{activity[1].titlePost}</TitlePost>
                 <TypePost>{activity[1].typePost}</TypePost>
               </div>
-              <DescriptionPost>{activity[1].descriptionPost}</DescriptionPost>
+              <DescriptionPost>{this.formatPost(activity)}</DescriptionPost>
               <div className='center'>
-                <button type='button'>Editar</button>
                 <button
                   type='button'
                   onClick={() => {

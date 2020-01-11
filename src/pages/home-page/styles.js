@@ -121,7 +121,8 @@ export const Activity = styled.div`
     flex-direction: row;
     justify-content: center;
 
-    button {
+    button,
+    a {
       background: transparent;
       border-radius: 24px;
       border: solid 1px #000;
@@ -132,6 +133,8 @@ export const Activity = styled.div`
       margin-left: 3px;
       margin-right: 3px;
       font-weight: 500;
+      text-decoration: none;
+      color: #000;
     }
   }
 `;
