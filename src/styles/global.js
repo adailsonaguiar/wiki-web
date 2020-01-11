@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
@@ -10,6 +10,7 @@ export default createGlobalStyle`
 
     html, body, #root{
         height: 100%;
+        width:100%;
     }
 
     body{
@@ -22,4 +23,4 @@ export default createGlobalStyle`
     ul{
         list-style: none;
     }
-`
+`;

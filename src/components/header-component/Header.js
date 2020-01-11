@@ -34,25 +34,25 @@ const Header = ({ pages, tutorials, documents, meetings }) => {
         <Logo src={logo} />
       </DivLeft>
       <DivCent>
-        <Notification>
+        <Notification className='notification'>
           <div>{pages}</div>
           <p>Páginas</p>
         </Notification>
-        <Notification>
+        <Notification className='notification'>
           <div>{documents}</div>
           <p>Documentos</p>
         </Notification>
-        <Notification>
+        <Notification className='notification'>
           <div>{tutorials}</div>
           <p>Tutoriais</p>
         </Notification>
-        <Notification>
+        <Notification className='notification'>
           <div>{meetings}</div>
           <p>Reuniões</p>
         </Notification>
       </DivCent>
       <DivRight>
-        <User>{user}</User>
+        <User className='user'>{user}</User>
         <p onClick={() => logOut()}>Sair</p>
       </DivRight>
     </Container>

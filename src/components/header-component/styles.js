@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #fff;
-  width: 100%;
+  min-width: 100%;
   height: 50px;
   position: fixed;
   top: 0px;
@@ -10,6 +10,22 @@ export const Container = styled.div`
   padding-right: 10px;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 600px) {
+    .notification {
+      width: 25px;
+      div {
+        width: 12px;
+        height: 12px;
+      }
+      p {
+        font-size: 5px;
+      }
+    }
+    .user {
+      visibility: hidden;
+    }
+  }
 `;
 
 export const Logo = styled.img`
@@ -54,7 +70,7 @@ export const Notification = styled.div`
   margin-left: 3px;
   margin-right: 3px;
   cursor: pointer;
- 
+
   div {
     display: flex;
     align-items: center;

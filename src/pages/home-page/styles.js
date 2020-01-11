@@ -76,6 +76,16 @@ export const Form = styled.div`
   .center {
     justify-content: center;
   }
+
+  @media (max-width: 600px) {
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 export const TitleForm = styled.p`
@@ -87,6 +97,10 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const ContainerActivities = styled.div`
