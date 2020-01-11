@@ -12,7 +12,7 @@ import logo from '../../assets/logo.svg';
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ pages, tutorials, documents, meetings }) => {
   const [user, setUser] = useState('');
   const history = useHistory();
   useEffect(() => {
@@ -35,25 +35,25 @@ const Header = () => {
       </DivLeft>
       <DivCent>
         <Notification>
-          <div>15</div>
+          <div>{pages}</div>
           <p>Páginas</p>
         </Notification>
         <Notification>
-          <div>139</div>
+          <div>{documents}</div>
           <p>Documentos</p>
         </Notification>
         <Notification>
-          <div>71</div>
+          <div>{tutorials}</div>
           <p>Tutoriais</p>
         </Notification>
         <Notification>
-          <div>521</div>
+          <div>{meetings}</div>
           <p>Reuniões</p>
         </Notification>
       </DivCent>
       <DivRight>
         <User>{user}</User>
-        <a onClick={() => logOut()}>Sair</a>
+        <p onClick={() => logOut()}>Sair</p>
       </DivRight>
     </Container>
   );

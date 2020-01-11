@@ -102,11 +102,52 @@ export const ContainerActivities = styled.div`
 
 export const Activity = styled.div`
   background: #f3f3f3;
-  width: 70%;
+  width: 100%;
   border-radius: 5px;
-  box-shadow: 6px 7px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 7px 13px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   padding: 20px;
   margin-bottom: 20px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    button {
+      background: transparent;
+      border-radius: 24px;
+      border: solid 1px #000;
+      padding-left: 6px;
+      padding-right: 6px;
+      cursor: pointer;
+      outline: none;
+      margin-left: 3px;
+      margin-right: 3px;
+      font-weight: 500;
+    }
+  }
+`;
+
+export const TitlePost = styled.p`
+  font-size: 15px;
+  font-weight: bold;
+`;
+
+export const TypePost = styled.p`
+  font-size: 12px;
+  font-weight: 500;
+`;
+
+export const DescriptionPost = styled.p`
+  font-size: 13px;
+  font-weight: 500;
+  text-align: justify;
 `;
