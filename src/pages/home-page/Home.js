@@ -110,6 +110,14 @@ export default class Home extends React.Component {
     });
   };
 
+  removeActivity = async activityId => {
+    const uid = JSON.parse(localStorage.getItem('user')).uid;
+    const res = firebase.database().ref(`activities/${uid}/${activityId}`);
+
+    await res.remove();
+    this.getActivities();
+  };
+
   render() {
     return (
       <Container>
@@ -165,7 +173,14 @@ export default class Home extends React.Component {
               <DescriptionPost>{activity[1].descriptionPost}</DescriptionPost>
               <div className='center'>
                 <button type='button'>Editar</button>
-                <button type='button'>Deletar</button>
+                <button
+                  type='button'
+                  onClick={() => {
+                    this.removeActivity(activity[0]);
+                  }}
+                >
+                  Deletar
+                </button>
               </div>
             </Activity>
           ))}
