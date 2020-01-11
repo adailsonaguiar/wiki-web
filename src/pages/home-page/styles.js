@@ -88,3 +88,25 @@ export const Row = styled.div`
   flex-direction: row;
   margin-bottom: 10px;
 `;
+
+export const ContainerActivities = styled.div`
+  background: #fff;
+  width: 70%;
+  border-radius: 5px;
+  box-shadow: 6px 7px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 20px;
+`;
+
+export const Activity = styled.div`
+  background: #f3f3f3;
+  width: 70%;
+  border-radius: 5px;
+  box-shadow: 6px 7px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 20px;
+`;

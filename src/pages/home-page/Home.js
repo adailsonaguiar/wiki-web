@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/header-component/Header';
 import firebase from 'firebase';
-import { Container, Form, Row, TitleForm } from './styles';
+import {
+  Container,
+  Form,
+  Row,
+  TitleForm,
+  ContainerActivities,
+  Activity
+} from './styles';
 import Load from '../../components/load-component/Load';
 
 const Home = () => {
-  const [userId, setUserId] = useState('');
   const [titlePost, setTitlePost] = useState('');
   const [typePost, setTypePost] = useState('');
   const [descriptionPost, setDescriptionPost] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activities, SetActivities] = useState([]);
+
   useEffect(() => {
-    if (localStorage.getItem('user')) {
-      setUserId(JSON.parse(localStorage.getItem('user')).user.uid);
-    }
-  }, []);
+    getActivities();
+  });
 
   const cleanForm = () => {
     setTitlePost('');
@@ -34,19 +40,33 @@ const Home = () => {
   };
 
   const saveActivity = async () => {
+    const uid = JSON.parse(localStorage.getItem('user')).uid;
     if (validateForm()) {
       setLoading(true);
       const timestamp = new Date().getTime();
       const body = { titlePost, typePost, descriptionPost };
       await firebase
         .database()
-        .ref(`activities/${userId}/${timestamp}`)
-        .set(body);
+        .ref(`activities/${uid}`)
+        .push(body);
       setLoading(false);
       cleanForm();
     } else {
       alert('Preencha os campos corretamente!');
     }
+  };
+
+  const getActivities = async () => {
+    const uid = JSON.parse(localStorage.getItem('user')).uid;
+    const res = firebase.database().ref('activities/' + uid);
+
+    await res.once('value').then(snapshot => {
+      const aaa = snapshot.val();
+      SetActivities(aaa);
+      console.log(activities);
+     
+      console.log(activities);
+    });
   };
 
   return (
@@ -85,7 +105,12 @@ const Home = () => {
           )}
         </Row>
       </Form>
-      ><h1>Home Works</h1>
+      <ContainerActivities>
+        {/*  {activities.map(activity => {
+          console.log(activity);
+        })} */}
+        <Activity>activity</Activity>
+      </ContainerActivities>
     </Container>
   );
 };

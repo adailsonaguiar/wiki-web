@@ -19,7 +19,7 @@ const Login = () => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       setLoading(false);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user.user));
       history.push('/');
     } catch (erro) {
       console.log(erro);

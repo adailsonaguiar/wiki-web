@@ -17,7 +17,7 @@ const Header = () => {
   const history = useHistory();
   useEffect(() => {
     if (localStorage.getItem('user')) {
-      const userLocal = JSON.parse(localStorage.getItem('user')).user.email;
+      const userLocal = JSON.parse(localStorage.getItem('user')).email;
       setUser(userLocal);
     }
   }, []);
